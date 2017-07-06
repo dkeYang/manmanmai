@@ -1,0 +1,49 @@
+@import "../../../sass/normalize6.0";
+@import "../../../sass/bass";
+
+*{
+  margin: 0;
+  padding: 0;
+}
+@function p2r($size){
+  @return ($size/64*1rem);
+}
+
+.top{
+  height:p2r(64);
+  background-color:#F4483E;
+  padding-left:p2r(60);
+  padding-right:p2r(75);
+  position: relative;
+  .top_left{
+    width:p2r(58);
+    height:p2r(64);
+    position:absolute;
+    left:0;
+   a{
+     display: block;
+     width:p2r(58);
+     height:p2r(64);
+   }
+  }
+  h2{
+    display:block;
+    font-size:p2r(28);
+    color: #fff;
+    height:p2r(64);
+    text-align:center;
+    line-height:p2r(64);
+  }
+  .top_right{
+    width:p2r(58);
+    height:p2r(64);
+    position: absolute;
+    top:0;
+    right:0;
+    a{
+      display:block;
+      width:p2r(58);
+      height:p2r(64);
+    }
+  }
+}

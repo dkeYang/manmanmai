@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>白菜价哦</title>
+
+
+    <link rel="stylesheet" href="../../lib/swiper/swiper.min.css">
+    <link rel="stylesheet" href="../../lib/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../css/baicaija_index.css">
+	 <link rel="shortcut icon" type="image/x-icon" href="../../favicon.ico" class="ico">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <script>
+        document.querySelector("html").style.fontSize = window.screen.width / 10 + "px";
+    </script>
+
+</head>
+<body>
+<!--头部标签-->
+<header><h2>白菜价-淘宝内部券</h2>
+    <a href="../../index.html" class="glyphicon glyphicon-menu-left h-left"></a>
+    <a href="#" class="glyphicon glyphicon-download-alt h-right"></a>
+</header>
+<!--分类导航栏-->
+<nav>
+    <!--拉拉弹&#45;&#45;左边的分类器-->
+    <div class="class-swiper-container swiper-container" dir="rtl">
+        <div class="swiper-wrapper">
+            <div class="class-swiper-slide swiper-slide" dir="rtl">
+                <ul class="clearfix">
+                    <li class="current">全部</li>
+                    <li>热销</li>
+                    <li>9块邮</li>
+                    <li>19块邮</li>
+                    <li>数码家电</li>
+                    <li>居家</li>
+                    <li>美食</li>
+                    <li>男装</li>
+                    <li>女装</li>
+                    <li>鞋包配饰</li>
+                    <li>文体</li>
+                    <li>母婴</li>
+                    <li>美妆</li>
+                </ul>
+            </div>
+
+        </div>
+        <!--&lt;!&ndash; 如果需要分页器 &ndash;&gt;-->
+        <!--<div class="swiper-pagination"></div>-->
+
+        <!--&lt;!&ndash; 如果需要导航按钮 &ndash;&gt;-->
+        <!--<div class="swiper-button-prev"></div>-->
+        <!--<div class="swiper-button-next"></div>-->
+
+        <!--&lt;!&ndash; 如果需要滚动条 &ndash;&gt;-->
+        <!--<div class="swiper-scrollbar"></div>-->
+    </div>
+    <span class="glyphicon glyphicon-search showSo"></span>
+    <div class="search">
+        <input type="text" placeholder="接下来搞哪个呢？">
+        <a href="javascript:void(0)" class="glyphicon glyphicon-search"></a>
+    </div>
+</nav>
+
+<!--//商品展示区-->
+<ul class="pruducts">
+    <li class="item" href="">
+        <div class="left"><a href="">
+            <img src="https://gd2.alicdn.com/imgextra/i4/2559357181/TB2eYawX43X61Bjy0FlXXaGtVXa_!!2559357181.jpg_400x400.jpg"
+                 alt="">
+        </a>
+
+        </div>
+        <div class="right">
+            <p><a href="">藏源鹿品牌原创设计【羊毛针织】中长大衣</a></p>
+            <p><i>券后</i><em>¥</em>106.0
+                <del>¥206</del>
+            </p>
+            <!--<p><a href="">下单链接</a></p>-->
+            <div class="link"><a href=\"http://shop.m.taobao.com/shop/coupon.htm?seller_id=2213057944&amp;activity_id=8cfb336284b5436b9f2c7c9343fa85f1\" target=\"_blank\">点此领10元优惠券</a>
+                <a href="">下单链接</a>
+
+
+
+            </div>
+            <div class="bar clearfix">
+                <a href="http://shop.m.taobao.com/shop/coupon.htm?seller_id=2213057944&amp;activity_id=8cfb336284b5436b9f2c7c9343fa85f1" class="goquan"
+                                           target="_blank">
+
+                </a><i><em style="width:75%;"></em><span>75%</span></i><b>已领75117张</b></div>
+
+
+        </div>
+    </li>
+</ul>
+<!--底部 -->
+<div class="sy-foot">
+    <div class="dengLu">
+        <a href="javascript:void(0)">登录</a>
+        <a href="javascript:void(0)">注册</a>
+        <a href="javascript:void(0)"><i class=" icon-arrow-up"></i>&nbsp;返回顶部</a>
+    </div>
+    <div class="xiaZ">
+        <P><a href="javascript:void(0)">手机APP下载</a>慢慢买手机版 <span>-- 掌上比价平台</span></P>
+        <P><a href="javascript:void(0)">m.manmanbuy.com</a></P>
+    </div>
+</div>
+<!--底部-->
+<div class="toTop glyphicon glyphicon-plane">
+
+</div>
+</body>
+</html>
+<script type="text/html" id="classTempalate">
+{{each result}}
+<li>{{$value.title}}</li>
+{{/each}}
+</script>
+<script type="text/html" id="storeTemplate">
+    {{each result}}
+    <li class="item" >
+        <div class="left"><a href="">
+            {{#$value.productImg}}
+        </a>
+        </div>
+        <div class="right">
+            <p><a href="">{{#$value.productName}}</a></p>
+            <p>{{#$value.productPrice}}
+            </p>
+            <!--<p><a href="">下单链接</a></p>-->
+            <div class="link">{{#$value.productCoupon}}
+                {{#$value.productHref}}
+
+            </div>
+            {{#$value.productCouponRemain}}
+        </div>
+    </li>
+    {{/each}}
+</script>
+<script src="../../js/jquery-1.12.2.js"></script>
+<script src="../../lib/swiper/swiper.min.js"></script>
+<script src="../../lib/bootstrap/js/bootstrap.min.js"></script>
+<script src="../../js/template.js"></script>
+<script src="../../js/sy-index.js"></script>
+<script>
+    var classSwiper = new Swiper('.class-swiper-container', {
+//        scrollbar: '.class-swiper-scrollbar',
+        slidesPerView: 'auto',
+        mousewheelControl: true,
+        freeMode: true,
+//        roundLengths: true,//防止文字模糊
+//       0 scrollbar: '.swiper-scrollbar',
+//        direction: 'vertical',
+    });
+
+//    var swiper = new Swiper('.swiper-container', {
+//        pagination: '.swiper-pagination',
+//        paginationClickable: true,
+//        nextButton: '.swiper-button-next',
+//        prevButton: '.swiper-button-prev'
+//    });
+
+    //    填充导航商品分类
+    function fillClass() {
+        $.ajax({
+            url: "http://139.199.192.48:9090/api/getbaicaijiatitle",
+            success: function (data) {
+//                console.log(data);
+//                console.log(template("classTempalate", data));
+                $(".class-swiper-slide ul ").html(template("classTempalate", data));
+                $(".class-swiper-slide li").first().addClass("current");
+                currentId=0;
+                fillStore();
+
+            }
+        })
+    }
+    fillClass();
+
+    //填充对应类的商品
+    function fillStore() {
+        $.ajax({
+            url: 'http://139.199.192.48:9090/api/getbaicaijiaproduct',
+            data: {titleid:currentId},
+            success: function (data) {
+                console.log(data);
+                $(".pruducts").html(template("storeTemplate",data));
+
+            }
+
+        })
+    }
+    var currentId=0;
+    //固定小窗口的高度
+    var trans = $(".class-swiper-container").width();//滑动的宽度
+    //ul内容的宽度
+    var ulWidth = $(".class-swiper-slide ul").width();
+    //默认是划到最右边的位置，我们人为要让他滑回来
+    classSwiper.setWrapperTranslate(-ulWidth+trans);
+
+
+//    console.log(trans);
+//    console.log(ulWidth);
+//    console.log(trans - ulWidth);
+//    console.log("li的宽度"+lisWidth);
+//    console.log("外面盒子宽度"+trans);
+//    console.log(-ulWidth + trans);//原来的位置
+//    console.log(lisWidth - trans- ulWidth + trans);//现在的位置
+    $(".class-swiper-slide ").on("click", "ul li", function () {
+
+        var index = $(this).index();
+        $("header h2").html($(this).text()+"-淘宝内部券")
+        if(index==0){
+            $("header h2").html("白菜价"+"-淘宝内部券")
+        }
+
+        currentId=index;
+
+        fillStore();
+
+        //swiper-wraper初始的位置
+        var beginPosition=-ulWidth+trans;
+
+
+        //移动的宽度 等于li标签左边盒子的宽度或者右边盒子的宽度
+        var lisWidth = 0;//移动的宽度
+        classSwiper.setWrapperTransition(500);
+        if($(this).index()>$("li.current").index()){
+            for (var i = 0; i <index; i++) {
+                lisWidth += $(".class-swiper-slide li").eq(i).width();
+                classSwiper.setWrapperTranslate(lisWidth+beginPosition);
+               if(lisWidth+beginPosition>0) {
+                   classSwiper.setWrapperTranslate(0);
+               }
+            }
+        }else{
+            for (var i = $(".class-swiper-slide li").length; i >index; i--) {
+                lisWidth += $(".class-swiper-slide li").eq(i).width();
+                classSwiper.setWrapperTranslate(-lisWidth+beginPosition+trans);
+            }
+            if(-lisWidth+beginPosition+trans<beginPosition){
+                classSwiper.setWrapperTranslate(beginPosition);
+            }
+        }
+
+        console.log(lisWidth + beginPosition);
+
+//        if(lisWidth>(trans/3)&&lisWidth<ulWidth-trans){
+//            classSwiper.setWrapperTranslate(lisWidth-ulWidth+trans);
+//        }
+//        if(lisWidth<(trans/3)){
+//            classSwiper.setWrapperTranslate(-ulWidth + trans);
+//        }
+//        if(lisWidth>=ulWidth-trans){
+//            classSwiper.setWrapperTranslate(0);
+//        }
+        $(".class-swiper-slide li").removeClass("current");
+        $(this).addClass("current");
+//        console.log(moveWith);
+//        console.log(moveWith - trans);
+
+
+//           $(".class-swiper-container .swiper-wrapper").css("transform","translate3d("+(trans-moveWith)+"px, 0px, 0px)");
+
+
+    })
+//    搜索框的召唤
+    var showSoFlag=false;
+    $(".search").hide();
+        $(".showSo").on("click",function () {
+            if(showSoFlag){
+                $(".search").show();
+                showSoFlag=!showSoFlag;
+                $(".pruducts").animate({marginTop:48})
+                $(this).removeClass("glyphicon-search").addClass("glyphicon-remove")
+            }else{
+                $(".search").hide();
+                $(".pruducts").animate({marginTop:0})
+                showSoFlag=!showSoFlag;
+                $(this).addClass("glyphicon-search").removeClass("glyphicon-remove")
+
+            }
+        })
+
+    $(window).scroll(function () {
+//        console.log($(this).scrollTop());
+//        console.log($(window).height());
+        if($(this).scrollTop()>$(window).height()){
+            $(".toTop").show();
+        }else{
+            $(".toTop").hide()
+        }
+    })
+    $(".toTop").hide();
+            $(".toTop").click(function () {
+                $('html,body').animate({scrollTop:0});
+                $(this).hide();
+            })
+
+    $('.sy-foot .dengLu a:nth-child(3)').click(function () {
+        $('html,body').animate({scrollTop:0});
+
+    })
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

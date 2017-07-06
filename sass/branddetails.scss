@@ -1,0 +1,267 @@
+@import 'normalize6.0.scss';
+@import 'base.scss';
+.details-jump {
+    width: 100%;
+    height: p2r(100);
+    line-height: p2r(100);
+    background: linear-gradient(to bottom, white, #ededed);
+    padding: 0 p2r(15);
+    border-top: 1px solid #ebebeb;
+    border-bottom: 1px solid #ebebeb;
+    a {
+        color: black;
+        font-size: p2r(28);
+        font-weight: 900;
+    }
+}
+
+// 热门品牌排行
+.details-title {
+    width: 100%;
+    margin: 0 auto;
+    height: p2r(100);
+    background-color: #eee;
+    line-height: p2r(100);
+    color: #874604;
+    font-size: p2r(30);
+    font-weight: 900;
+    padding: 0 p2r(15);
+    border: 1px solid #c8c8c8;
+}
+
+// 品牌列表
+.details-list {
+    a {
+        display: flex;
+        // flex-direction: column;
+        justify-content: space-between;
+        align-content: center;
+        height: p2r(120);
+        padding: p2r(15);
+        color: black;
+        font-size: p2r(30);
+        border-bottom: 1px solid #ccc;
+        span {
+            background-color: #c9c9c9;
+            color: white;
+            padding: 0 p2r(10);
+            margin-right: p2r(5);
+        }
+        p {
+            &:last-child {
+                margin-top: p2r(5);
+                text-indent: 1.4em;
+                color: #999999;
+                font-size: p2r(24);
+            }
+        }
+    }
+}
+
+// 销售排行
+.details-item {
+    height: p2r(300);
+    border-bottom: 1px solid #e7e7e7;
+    display: flex;
+    padding: p2r(10);
+    justify-content: space-between;
+    color: black;
+    font-size: p2r(30);
+    .details-img {
+        height: 100%;
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        img {
+            width: 80%;
+            height: 100%;
+        }
+    }
+    .des {
+        height: 100%;
+        flex: 2;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: flex-start;
+        P:nth-child(2) {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            margin: p2r(15) 0;
+            span {
+                color: #ea394f;
+            }
+            span:last-child {
+                color: #ff9000;
+            }
+        }
+        P:last-child {
+            color: #999999;
+            font-size: p2r(24);
+        }
+    }
+}
+
+//评论区域
+.detials-comment-img {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: p2r(20);
+    background-color: #f2f2f2;
+    .details-img {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        img {
+            flex: 1;
+            margin-right: p2r(15);
+        }
+        p {
+            flex: 2;
+            margin-top: p2r(40);
+            color: #999999;
+            font-size: p2r(35);
+        }
+    }
+    .des {
+        background-color: #f8f8f8;
+        border: 1px solid #c8c8c8;
+        padding: p2r(30);
+        line-height: p2r(40);
+        position: relative;
+        b {
+            // content: "△";
+            background-color: white;
+            position: absolute;
+            left: p2r(60);
+            top: - 1.1rem;
+            font-size: p2r(60);
+            color: #c8c8c8;
+        }
+        p:first-child {
+            display: flex;
+            justify-content: space-between;
+            padding: p2r(20) 0;
+            span {
+                font-size: p2r(40);
+                color: #999999;
+                span {
+                    color: #ff9000;
+                }
+            }
+        }
+    }
+}
+
+//  底部
+.sy-foot {
+    background-color: #f1f1f1;
+    padding-bottom: p2r(10);
+    .top {
+        height: p2r(80);
+        width: 100%;
+        background-color: #ff9e1f;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 p2r(10);
+        span {
+            font-size: p2r(40);
+            color: white;
+            font-weight: 900;
+        }
+        img {
+            width: p2r(40);
+            height: p2r(40);
+        }
+    }
+    .dengLu {
+        height: p2r(90);
+        width: 100%;
+        border-top: 1px solid #c4c4c4;
+        border-bottom: 1px solid #c4c4c4;
+        font-size: p2r(30);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: p2r(26);
+        a {
+            height: 100%;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #3e3e3e;
+            &:nth-child(2) {
+                border-left: 1px solid #c4c4c4;
+                border-right: 1px solid #c4c4c4;
+            }
+            i {}
+        }
+    }
+    .xiaZ {
+        font-size: p2r(30);
+        text-align: center;
+        margin-top: p2r(18);
+        p {
+            &:nth-child(1) {
+                a {
+                    color: red;
+                    padding-right: p2r(6);
+                }
+                span {
+                    color: #6e7272;
+                }
+            }
+            &:nth-child(2) {
+                margin: p2r(10);
+                // margin-bottom: p2r(10);
+                a {
+                    color: #333;
+                }
+            }
+        }
+    }
+}
+
+//header区域
+.sy-header {
+    width: 100%;
+    height: p2r(120);
+    background-color: #ff841d;
+    display: flex;
+    .logo {
+        height: 100%;
+        flex: 1;
+        a {
+            // display: block;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            padding-left: p2r(18);
+            img {
+                width: 50%;
+                height: 50%;
+            }
+        }
+    }
+    .appdown {
+        width: p2r(100);
+        height: 100%;
+        a {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            img {
+                width: 60%;
+                height: 60%;
+            }
+        }
+    }
+}

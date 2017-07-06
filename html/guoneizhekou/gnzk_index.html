@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1">
+  <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+  <title>国内折扣</title>
+  <!-- 使用js 来修改 rem的的大小 -->
+  <script>
+    // 这里除以的份数 取决于 我们在设计图中转换时 除以的分数 这里以10来计算会方便一些
+    document.querySelector('html').style.fontSize = window.screen.width / 10 + 'px';
+  </script>
+  <!-- Bootstrap -->
+  <link href="../../lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Link Swiper's CSS -->
+  <link rel="stylesheet" href="../../lib/swiper/swiper.min.css">
+  <link rel="stylesheet" href="../../css/font-awesome.css">
+  <link rel="stylesheet" href="../../css/syj_index.css">
+
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+      <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+  <div class="mmm_layout">
+    <!--顶部通栏-->
+    <!-- header-->
+    <header>
+      <div class="sy-header">
+        <div class="  logo">
+          <a href="../../index.html"> < </a>
+        </div>
+        <div class="gnzk">
+          <p>国内折扣</p>
+          </div>
+        <div class=" appdown">
+          <a href="javascript:viod(0)">
+                <img src="../../images/header_app.png" alt=""/>
+            </a>
+        </div>
+      </div>
+    </header>
+
+
+    <!--主要内容部分-->
+    <div class="main-body">
+      <ul class="goods-lists">
+      </ul>
+    </div>
+
+    <!--底部跳转区-->
+    <div class="gnzk_footer">
+      <!--底部 -->
+      <div class="sy-foot">
+        <a href="javascript:void(0)">
+          <div class="top">
+            <span>品牌排行</span>
+            <img src="../../images/more.png" alt="" />
+          </div>
+        </a>
+        <div class="dengLu">
+          <a href="javascript:void(0)">登录</a>
+          <a href="javascript:void(0)">注册</a>
+          <a href="javascript:void(0)"><i class=" icon-arrow-up"></i>&nbsp;返回顶部</a>
+        </div>
+        <div class="xiaZ">
+          <P><a href="javascript:void(0)">手机APP下载</a>慢慢买手机版 <span>-- 掌上比价平台</span></P>
+          <P><a href="javascript:void(0)">m.manmanbuy.com</a></P>
+        </div>
+      </div>
+    </div>
+    <!--最外层盒子-->
+  </div>
+
+
+  <!-- Swiper JS -->
+  <script src="../../lib/swiper/swiper.min.js"></script>
+  <!-- Initialize Swiper -->
+
+  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+  <script src="../../js/jquery-1.12.2.js"></script>
+  <!--<script src="js/zepto/zepto.js"></script>-->
+  <!-- Include all compiled plugins (below), or include individual files as needed -->
+  <script src="../../lib/bootstrap/js/bootstrap.min.js"></script>
+  <!--引入模板引擎-->
+  <script src="../../js/template.js"></script>
+</body>
+
+<!--挖坑-->
+<script type="text/html" id="inland-template">
+
+  <li>
+    <a href="gnzk_info.php?productId={{productId}}&_id={{_id}}">
+      <!--之所以加一个#号是为了html自动把字符串的符号 <> 转换为标签-->
+      <div>{{#productImg}}</div>
+      <!--<img src="http://img10.360buyimg.com/n7/jfs/t1720/256/513904188/195330/ce31e971/55d2cf3eNc2d117d0.jpg" alt="西域美农新疆特产五星和田红枣250g*2">-->
+      <p class="title">{{productName}}</p>
+      <p class="submit">{{productPrice}}</p>
+      <p class="mall">{{productFrom}} &nbsp| {{productTime}}</p>
+    </a>
+  </li>
+
+</script>
+
+<script>
+  var numId = -1;
+  var shopNum = 0;
+  $.ajax({
+    url: 'http://139.199.192.48:9090/api/getinlanddiscount',
+    success: function (data) {
+      console.log(data);
+      // 每次加载6个数据
+      flesh(data);
+      // 获取数据长度
+      shopNum = data.result.length;
+      // 获取每一个li的高度
+      var liHeight = $('.goods-lists li').height();
+      $(window).scroll(function () {
+        console.log("滚动距离=" + $(window).scrollTop());
+        // 获取id
+        console.log("numId=" + numId);
+        // var Dir = shopNum/2 * liHeight - 225*3;
+        // 底部盒子高度
+        var DirFoot = $('.gnzk_footer').height();
+        var Dir = shopNum / 2 * liHeight - $(window).height() + $('.sy-header').height() + DirFoot;
+        console.log("---------------------------------");
+        if ($(window).scrollTop() > numId * 15) {
+          // 每次判断高度是否大于某个距离，是则重新加载6组数据刷新出来
+          flesh(data);
+        }
+
+        if ($(window).scrollTop() >= (Dir)) {
+          $(window).scrollTop(Dir+8);
+        } 
+
+        if ($(window).scrollTop() >= (Dir-DirFoot)) {
+          $('.gnzk_footer').fadeIn(200);
+        } else if ($(window).scrollTop() < (Dir + DirFoot)) {
+          $('.gnzk_footer').fadeOut(1000);
+        }
+      })
+    }
+  })
+
+  function flesh(data) {
+    for (var i = 0; i < 6; i++) {
+      numId++;
+      var data1 = data.result[numId];
+      // console.log(data1);
+      var gnzk_result = template('inland-template', data1);
+      $('.goods-lists').append(gnzk_result);
+    }
+  }
+</script>
+<script>
+  //   foot 返回顶部
+  $('.sy-foot .dengLu a:nth-child(3)').click(function () {
+    $('html,body').animate({
+      scrollTop: 0
+    });
+  })
+</script>
+
+</html>

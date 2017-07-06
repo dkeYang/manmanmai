@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>慢慢买比价网</title>
+    <link rel="stylesheet" href="../../css/bjss.css">
+    <link rel="stylesheet" href="../../fonts/bjss-font/iconfont.css">
+    <link rel="shortcut icon" type="image/x-icon" href="../../favicon.ico" class="ico">
+</head>
+<script>
+    document.querySelector('html').style.fontSize = window.screen.width / 10 + 'px';
+</script>
+<body>
+
+<header>
+    <div class="sy-header">
+    <div class="  logo">
+        <a href="../../index.html">
+            <img src="../../images/header_logo.png" alt=""/>
+        </a>
+    </div>
+    <div class=" appdown">
+        <a href="javascript:void(0)">
+            <img src="../../images/header_app.png" alt=""/>
+        </a>
+    </div>
+
+</div>
+
+    <div class="sy-search">
+        <input type="search" placeholder="请输入你想比价的商品">
+        <a href="javascript:void(0)">
+            搜索
+        </a>
+    </div>
+    <!--<div class="sy-bd"></div>-->
+</header>
+<main>
+    <div class="contents-all">
+    </div>
+</main>
+<div class="sy-foot">
+    <!--<a href="javascript:void(0)">-->
+        <!--<div class="top">-->
+            <!--<span>品牌排行</span>-->
+            <!--<img src="./images/more.png" alt=""/>-->
+        <!--</div>-->
+    <!--</a>-->
+
+    <div class="dengLu">
+        <a href="javascript:void(0)">登录</a>
+        <a href="javascript:void(0)">注册</a>
+        <a href="javascript:void(0)"><i class="icon-top iconfont"></i>&nbsp;返回顶部</a>
+    </div>
+    <div class="xiaZ">
+        <P><a href="javascript:void(0)">手机APP下载</a>慢慢买手机版 <span>-- 掌上比价平台</span></P>
+        <P><a href="javascript:void(0)">m.manmanbuy.com</a></P>
+    </div>
+
+
+</div>
+<div class="blank-foot"></div>
+</body>
+</html>
+<script src="../../js/jquery-1.12.2.js"></script>
+<script src="../../js/template.js"></script>
+<script src="../../lib/zepto/zepto.js"></script>
+<script src="../../lib/zepto/ajax.js"></script>
+<script src="../../lib/zepto/callbacks.js"></script>
+<script src="../../lib/zepto/event.js"></script>
+<script src="../../lib/zepto/touch.js"></script>
+<script src="../../js/bjss.js"></script>
+<script type="text/html" id="mainPage">
+    {{each result}}
+    <div class="content-items">
+        <a class="title iconfont icon-down" id="{{$value.titleId}}" href="javascript:void(0)">{{$value.title}}</a>
+    </div>
+    {{/each}}
+</script>
+<script type="text/html" id="mainPage-items">
+    <ul class="content-details-all">
+        {{each result}}
+        <li class="content-details-item"><a href="detail.php?index={{$value.categoryId}}">{{$value.category}}</a></li>
+        {{/each}}
+    </ul>
+</script>

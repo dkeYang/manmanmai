@@ -1,0 +1,84 @@
+@import "normalize6.0";
+@import "base.scss";
+
+$red:#E4393C;
+@function ppp($size){
+  @return ($size/47*1rem);
+}
+
+//<!--头部标签-->
+header{
+  height: ppp(54);
+  background-color: $red;
+  position: relative;
+  text-align: center;
+  h2{
+    font-size:ppp(28) ;
+    line-height: ppp(54);
+    color: white;
+    margin: 0 ppp(60);
+  }
+  .h-left{
+    height: 100%;
+    width:ppp(50);
+    line-height: ppp(54);
+    position: absolute;
+    top:0;
+    font-size: ppp(28);
+    font-weight:700;
+    color: white;
+    left: ppp(10);
+    }
+  .h-right{
+    height: 100%;
+    width:ppp(50);
+    line-height: ppp(54);
+    position: absolute;
+    top:0;
+    font-size: ppp(28);
+    font-weight:700;
+    color: white;
+    right: ppp(10);
+  }
+}
+
+
+//<!--分类导航栏-->
+nav{
+  margin-top:ppp(10);
+  height: ppp(48);
+  background-color: pink;
+  display: flex;
+  //拉拉弹
+  .class-swiper-container{
+    height: 100%;
+    flex:1;
+    background: yellowgreen;
+    //overflow: hidden;
+    .class-swiper-slide{
+      height: 100%; width: auto;
+      ul{
+        padding-left: ppp(10);
+
+        li{
+          height: 100%;
+          line-height:ppp(48);
+          padding:0 ppp(10);
+          float: left;
+          text-align: center;
+        }
+      }
+    }
+  }
+  //呼唤出搜索框的span
+  .showSo{
+    height: 100%;
+    width:ppp(48);
+    line-height: ppp(48);
+    font-size: ppp(28);
+    font-weight:700;
+    text-align: center;
+  }
+
+
+}

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>优惠券</title>
+    <link rel="shortcut icon" type="image/x-icon" href="../../favicon.ico" class="ico" />
+
+    <!--导入css的文件-->
+    <link rel="stylesheet" href="../../css/youhuijuan.css">
+    <link rel="stylesheet" href="../../lib/bootstrap/css/bootstrap.min.css">
+
+    <!--移动端视口-->
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <script>
+        // 这里除以的份数 取决于 我们在设计图中转换时 除以的分数 这里以10来计算会方便一些
+        document.querySelector('html').style.fontSize = window.screen.width / 10 + 'px';
+    </script>
+</head>
+<body>
+<!--顶部的优惠卷begin-->
+<div class="top">
+    <div class="top_left">
+        <a href="../../index.html" class="glyphicon glyphicon-menu-left"></a>
+    </div>
+    <h2>优惠卷</h2>
+    <div class="top_right">
+        <a href="#">
+            <img src="../../images/header_app.png" alt="">
+        </a>
+    </div>
+</div>
+<!--顶部的优惠卷end-->
+
+<!--优惠券内容 begin-->
+   <ul class="yhj_content">
+
+
+   </ul>
+<!--优惠券内容 end-->
+<!--底部 -->
+<div class="sy-foot">
+    <div class="dengLu">
+        <a href="javascript:void(0)">登录</a>
+        <a href="javascript:void(0)">注册</a>
+        <a href="javascript:void(0)"><i class=" icon-arrow-up"></i>&nbsp;返回顶部</a>
+    </div>
+    <div class="xiaZ">
+        <P><a href="javascript:void(0)">手机APP下载</a>慢慢买手机版 <span>-- 掌上比价平台</span></P>
+        <P><a href="javascript:void(0)">m.manmanbuy.com</a></P>
+    </div>
+</div>
+<!--底部-->
+</body>
+</html>
+<script src="../../lib/bootstrap/js/bootstrap.min.js"></script>
+<script src="../../lib/bootstrap/js/jquery-1.12.4.min.js"></script>
+<script src="../../js/template-web.js"></script>
+
+<!--定义模板 begin-->
+<script type="text/html"  id="singleTemplate">
+    {{each result}}
+    <li>
+        <a href="couponproduct.php?id={{$value.couponId}}&couponid={{$value.couponTitle}}">
+            <img src="{{$value.couponImg}}" alt="肯德基优惠券">
+            <p>{{$value.couponTitle}}</p>
+        </a>
+    </li>
+    {{/each}}
+</script>
+<!--定义模板end-->
+
+<!--自己的js-->
+<script>
+    $(function (){
+        $.ajax({
+            url:"http://139.199.192.48:9090/api/getcoupon",
+            type:"get",
+            success: function (data){
+                console.log(data);
+                // 调用模板引擎
+                var result = template('singleTemplate',data);
+                  console.log(data);
+                  console.log(result);
+                  console.log(result);
+              $('.yhj_content').append(result);
+            }
+        })
+    })
+//底部js
+    $('.sy-foot .dengLu a:nth-child(3)').click(function () {
+        $('html,body').animate({scrollTop:0});
+
+    })
+</script>

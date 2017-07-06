@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!--引入css文件夹-->
+    <link rel="stylesheet" href="../../css/daohang.css">
+    <!--引入bootstrap文件夹-->
+    <link rel="stylesheet" href="../../lib/bootstrap/css/bootstrap.min.css">
+    <!--移动端视口-->
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+
+    <script>
+        // 这里除以的份数 取决于 我们在设计图中转换时 除以的分数 这里以10来计算会方便一些
+        document.querySelector('html').style.fontSize = window.screen.width / 10 + 'px';
+    </script>
+    <!--引入js代码-->
+    <script src="../../lib/bootstrap/js/bootstrap.min.js"></script>
+    <!--引入jQuery-->
+    <script src="../../lib/bootstrap/js/jquery-1.12.4.min.js"></script>
+    <!--模板引擎-->
+    <script src="../../js/template-web.js"></script>
+</head>
+<body>
+<!--商品导航 begin-->
+<div class="top">
+    <div class="top_left">
+        <a href="../../index.html" class="glyphicon glyphicon-menu-left"></a>
+    </div>
+    <h2>商城导航</h2>
+    <div class="top_right">
+        <a href="#">
+            <img src="../../images/header_app.png" alt="">
+        </a>
+    </div>
+</div>
+<!--商品导航 end-->
+
+<!--导航列表begin-->
+   <div class="daohang">
+
+
+   </div>
+<!--导航列表 end-->
+<!--底部 -->
+<div class="sy-foot">
+    <div class="dengLu">
+        <a href="javascript:void(0)">登录</a>
+        <a href="javascript:void(0)">注册</a>
+        <a href="javascript:void(0)"><i class=" icon-arrow-up"></i>&nbsp;返回顶部</a>
+    </div>
+    <div class="xiaZ">
+        <P><a href="javascript:void(0)">手机APP下载</a>慢慢买手机版 <span>-- 掌上比价平台</span></P>
+        <P><a href="javascript:void(0)">m.manmanbuy.com</a></P>
+    </div>
+</div>
+<!--底部-->
+</body>
+</html>
+<!--定义模板-->
+<script type="text/html"  id="single">
+    {{each result}}
+<a href="{{$value.navHref}}" target="_blank">
+    <img src="{{$value.navImg}}">
+     <p>{{$value.navTitle}}</p>
+</a>
+    {{/each}}
+</script>
+<!--定义模板-->
+
+
+<!--自己的js-->
+<script>
+ $(function () {
+     $.ajax({
+       url:"http://139.199.192.48:9090/api/getsitenav",
+         success: function (data){
+             console.log(data);
+             // 调用模板引擎
+             var result = template('single',data);
+             console.log(data);
+             console.log(result);
+             console.log(result);
+            $('.daohang').append(result);
+         }
+     })
+ })
+//返回顶部
+ $('.sy-foot .dengLu a:nth-child(3)').click(function(){
+     $('html,body').animate({scrollTop:0});
+
+ })
+</script>

@@ -1,0 +1,473 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>慢慢买比价网</title>
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+    <script>
+        document.querySelector('html').style.fontSize = window.screen.width / 10 +'px';
+    </script>
+    <link rel="stylesheet" href="../../lib/bootstrap/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="../../css/coudanpin.css"/>
+    <link rel="shortcut icon" type="image/x-icon" href="../../favicon.ico" class="ico">
+
+</head>
+<body>
+    <header>
+        <a href="../../index.html">&lt;</a>
+        <h1>凑单品</h1>
+    </header>
+    <nav>
+        <div class="top-Businessmen">
+            <div class="left">
+                <ul class="pwc-nav">
+                    <li class="JD"><s>京东</s><span class="first-span glyphicon glyphicon-triangle-bottom"></span></li>
+                    <li class="top-navArea"><s>华北</s><span class="two-span glyphicon glyphicon-triangle-bottom"></span></li>
+                    <li class="top-navPrice"><s>全部价格</s><span class="last-span glyphicon glyphicon-triangle-bottom"></span></li>
+                </ul>
+            </div>
+            <div class="right ">
+                <a href="#"><span class="glyphicon glyphicon-fullscreen"></span></a>
+            </div>
+        </div>
+        <!--导航区域-->
+        <div>
+            <!--商家-->
+            <div class="Businessmen">
+                <ul class="first-ul">
+                </ul>
+            </div>
+            <!--地区区域-->
+            <div class="area">
+                <ul class="two-ul">
+                </ul>
+            </div>
+            <!--导航价格区域-->
+            <div class="price">
+                <ul class="three-ul">
+                    <li><a href="#">全部价格</a></li>
+                    <li><a href="#">1 - 5元</a></li>
+                    <li><a href="#">5 - 12元</a></li>
+                    <li><a href="#">12 - 18元</a></li>
+                    <li><a href="#">18 - 25元</a></li>
+                    <li><a href="#">25 元以上</a></li>
+                </ul>
+            </div>
+            <!--搜索区域-->
+            <div class="nav-search">
+                <div class="search">
+                    <input type="text" placeholder="请输入你要搜索的东西"/>
+                    <a href="#">搜索</a>
+                </div>
+                <div class="search-price">
+                    <div class="Sorting">
+                        <h4>排序</h4>
+                        <ul class="Sorting-ul">
+                            <li><a href="#">销量</a></li>
+                            <li><a href="#">价格<span class="glyphicon glyphicon-arrow-up"></span></a></li>
+                            <li><a href="#">价格<span class="glyphicon glyphicon-arrow-down"></span></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="cateGory">
+                    <h4>分类</h4>
+                    <ul>
+                        <li><a href="#">全部</a></li>
+                        <li><a href="#">家居</a></li>
+                        <li><a href="#">数码</a></li>
+                        <li><a href="#">办公</a></li>
+                        <li><a href="#">个户</a></li>
+                        <li><a href="#">食品</a></li>
+                        <li><a href="#">母婴</a></li>
+                        <li><a href="#">服饰</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </nav>
+    <main>
+        <div class="subJect">
+            <ul class="subJect-ul">
+            </ul>
+            <ul class="four-ul">
+            </ul>
+        </div>
+    </main>
+
+</body>
+</html>
+<script src="../../js/jquery-1.12.2.js"></script>
+<script src="../../js/template-web.js"></script>
+<!--定义店铺，区域等模板-->
+<script type="text/html" id="first-template">
+        {{each result}}
+        <li><a href="#" >{{$value.shopName}}</a></li>
+        {{/each}}
+</script>
+<!--定义首页模板-->
+<script type="text/html" id="two-template">
+    {{each result}}
+        <li><a href="javascript:void(0)">{{$value.areaName}}</a></li>
+    {{/each}}
+</script>
+<!--定义对应店铺，区域模板-->
+<script type="text/html" id="three-template">
+    {{each result}}
+    <li>
+        <a href="#">
+            <img src="{{$value.productImg}}" alt=""/>
+            <span>{{$value.productName}}</span>
+            <p>{{$value.productPrice}}</p>
+        </a>
+    </li>
+    {{/each}}
+</script>
+<script>
+    $(function(){
+        var arr=0;
+        var str=0;
+        //封装ajax请求
+        function getdata(){
+            $.ajax({
+                url: "http://139.199.192.48:9090/api/getgsproduct",
+                data: {
+                    shopid: str,
+                    areaid:arr,
+                },
+                success: function (data) {
+                    console.log(data)
+                    var result=template("three-template",data);
+//                    console.log(result)
+                    $(".subJect-ul").html(result);
+                }
+            })
+        }
+
+        //        首页ajax请求
+        $.ajax({
+            url:"http://139.199.192.48:9090/api/getgsproduct",
+            data:{
+                shopid:0,
+                areaid:0,
+            },
+            success:function(data){
+//                console.log(data)
+                var rosult=template("three-template",data)
+                $(".subJect-ul").html(rosult);
+            }
+        })
+
+//        店铺 下标以及ajax请求
+        $(".Businessmen").on("click","li",function(e){
+            console.log($(this).index());
+            str=$(this).index();
+            $(e.target).css({
+                backgroundColor:"red",
+            });
+            $(e.target).parent().siblings().children().css({
+                backgroundColor:"white",
+            })
+            getdata();
+            var tx=$(e.target).html();
+            console.log(tx)
+            $(".JD s").html(tx);
+//            +'<span class="two-span glyphicon glyphicon-triangle-top"></span>'
+        })
+
+        //下拉框区域下标以及ajax请求
+        $(".two-ul").on("click","li",function(e){
+            console.log($(this).index());
+            arr=$(this).index();
+            $(e.target).css({
+                backgroundColor:"red"
+            })
+            $(e.target).parent().siblings().children().css({
+                backgroundColor:"white",
+            })
+            getdata();
+            var text=$(e.target).html().slice(0,2);
+            console.log(text)
+            $(".top-navArea s").html(text)
+//            +'<span class="two-span glyphicon glyphicon-triangle-top"></span>'
+
+        })
+
+//       下拉框价格ajax请求
+        $(".three-ul").on("click","li",function(e){
+            console.log($(this).index())
+            var praceID= $(this).index();
+            $(e.target).css({
+                backgroundColor:"red",
+            });
+            $(e.target).parent().siblings().children().css({
+                backgroundColor:"white",
+            })
+            getdata();
+            var prace= $(e.target).html();
+            console.log(prace)
+            $(".top-navPrice s").html(prace)
+            $.ajax({
+                url:"http://139.199.192.48:9090/api/getgsproduct",
+                data:{
+                    shopid: arr,
+                    areaid:praceID,
+                },
+                success:function(data){
+                    console.log(data);
+                    var result=template("three-template",data);
+                    $(".subJect-ul").html(result)
+                }
+            })
+        })
+
+
+        //店铺点击事件
+//        var flagJD=true;
+        var flagJD;
+        var flagArea;
+        var flagPrice;
+        var flagBusi;
+        jd1();
+        area1();
+        navPrice1();
+//        记录点击商铺当前值封装01
+        function jd1(){
+            $(".Businessmen").hide();
+            flagJD=false;
+            $(".first-span").removeAttr("class").attr("class","first-span glyphicon glyphicon-triangle-bottom");
+        }
+//        记录点击商铺当前值封装02
+        function jd2(){
+            $(".Businessmen").show();
+            $(".first-span").removeAttr("class").attr("class","first-span glyphicon glyphicon-triangle-top");
+            flagJD=true;
+        }
+        //        记录点击区域当前值封装01
+        function area1(){
+            $(".area").hide();
+            $(".two-span").removeAttr("class").attr("class","two-span glyphicon glyphicon-triangle-bottom");
+            flagArea=false;
+        }
+        function area2(){
+            $(".area").show();
+            $(".two-span").removeAttr("class").attr("class","two-span glyphicon glyphicon-triangle-top");
+            flagArea=true;
+        }
+        //        记录点击价钱当前值封装01
+        function navPrice1(){
+            $(".price").hide();
+            $(".last-span").removeAttr("class").attr("class","last-span glyphicon glyphicon-triangle-bottom");
+            flagPrice=false;
+        }
+        function navPrice2(){
+            $(".price").show();
+            $(".last-span").removeAttr("class").attr("class","last-span glyphicon glyphicon-triangle-top");
+            flagPrice=true;
+        }
+        //        记录点击搜索区域当前值封装0
+        function topBusinessmen1(){
+            $(".nav-search").hide();
+            $(".right>a span").removeAttr("class").attr("class","glyphicon glyphicon-fullscreen");
+//            $(".right>a span").removeClass(".right>a span glyphicon glyphicon-remove");
+            flagBusi=false;
+        }
+        function topBusinessmen2(){
+            $(".nav-search").show();
+            $(".right>a span").removeAttr("class").attr("class"," glyphicon glyphicon-remove");
+            flagBusi=true;
+        }
+        //店铺区域
+        $(".JD").click(function(){
+            $(".Businessmen").hide();
+            if(flagJD){
+                jd1();
+            }else{
+                jd2();
+                area1();
+                navPrice1();
+                topBusinessmen1();
+            }
+        })
+        //地区区域点击事件
+        $(".top-navArea").click(function(){
+            if(flagArea){
+              area1();
+            }else{
+              area2();
+                jd1();
+                navPrice1();
+                topBusinessmen1();
+            }
+        })
+        //价格区域点击事件
+        $(".top-navPrice").click(function(){
+            if(flagPrice){
+                navPrice1();
+            }else{
+                navPrice2();
+                area1();
+                jd1();
+                topBusinessmen1();
+            }
+        })
+        //搜索区域点击事件
+        $(".top-Businessmen .right").click(function(){
+            if(flagBusi){
+                topBusinessmen1();
+            }else{
+                topBusinessmen2();
+                navPrice1();
+                area1();
+                jd1();
+            }
+        })
+
+//        var flag=true
+        //nav第一个按钮点击事件
+//        $(".JD").click(function(){
+//            $(".first-span").parent().siblings("li").children("span").removeClass("glyphicon glyphicon-triangle-top");
+//            $(".first-span").parent().siblings("li").children("span").addClass("glyphicon glyphicon-triangle-bottom");
+//
+//            $(".Businessmen").show().siblings("div").hide();
+//            $(".first-span").siblings().removeClass("glyphicon glyphicon-triangle-bottom");
+//            $(".first-span").addClass("glyphicon glyphicon-triangle-top");
+//
+//            if(flag){
+//                $(".Businessmen").show().siblings("div").hide();
+//                $(".Businessmen").css({
+//                    zindex: 998,
+//                })
+//                $(".first-span").siblings().removeClass("glyphicon glyphicon-triangle-bottom");
+//                $(".first-span").addClass("glyphicon glyphicon-triangle-top");
+//                flag=false;
+//            }else{
+//                $(".Businessmen").hide();
+//                $(".first-span").removeClass("glyphicon glyphicon-triangle-top");
+//                $(".first-span").addClass("glyphicon glyphicon-triangle-bottom");
+//                flag=true;
+//            }
+//        })
+        //nav第二个按钮点击事件
+//        $(".top-navArea").click(function(){
+//            $(".two-span").parent().siblings("li").children("span").removeClass("glyphicon glyphicon-triangle-top");
+//            $(".two-span").parent().siblings("li").children("span").addClass("glyphicon glyphicon-triangle-bottom");
+//            $(".area").css({
+//                zindex:998,
+//            })
+//            if(flag){
+//                $(".area").show().siblings("div").hide();
+//                $(".two-span").siblings().removeClass("glyphicon glyphicon-triangle-bottom");
+//                $(".two-span").addClass("glyphicon glyphicon-triangle-top");
+//                flag=false;
+//            }else{
+//                $(".area").hide();
+//                $(".two-span").removeClass("glyphicon glyphicon-triangle-top");
+//                $(".two-span").addClass("glyphicon glyphicon-triangle-bottom");
+//                flag=true;
+//            }
+//        })
+        //nav第三个按钮点击事件
+//        $(".top-navPrice").click(function(){
+//            $(".last-span").parent().siblings("li").children("span").removeClass("glyphicon glyphicon-triangle-top");
+//            $(".last-span").parent().siblings("li").children("span").addClass("glyphicon glyphicon-triangle-bottom");
+//
+//            if(flag){
+//                $(".price").show().siblings("div").hide();
+//                $(".last-span").siblings().removeClass("glyphicon glyphicon-triangle-bottom");
+//                $(".last-span").addClass("glyphicon glyphicon-triangle-top");
+//                flag=false;
+//            }else{
+//                $(".price").hide();
+//                $(".last-span").removeClass("glyphicon glyphicon-triangle-top");
+//                $(".last-span").addClass("glyphicon glyphicon-triangle-bottom");
+//                flag=true;
+//            }
+//        })
+        //nav第四个按钮点击事件
+//        $(".top-Businessmen .right").click(function(){
+//            $(".nav-search").css({
+//                zindex:998,
+//            })
+//            if(flag){
+//                $(".nav-search").show().siblings("div").hide();
+//                $(".right>a span").removeClass("glyphicon glyphicon-fullscreen");
+//                $(".right>a span").addClass("glyphicon glyphicon-remove");
+//                flag=false;
+//            }else{
+//                $(".nav-search").hide()
+//                $(".right>a span").removeClass("glyphicon glyphicon-remove");
+//                $(".right>a span").addClass("glyphicon glyphicon-fullscreen")
+//                flag=true;
+//            }
+//        })
+        //ajax 获取凑单品的店铺的信息
+        $(".JD").click(function(){
+            $.ajax({
+                url:"http://139.199.192.48:9090/api/getgsshop",
+                success:function(data){
+                    console.log(data)
+                    var rosult=template("first-template",data);
+//                    console.log(rouselt);
+                    $(".first-ul").html(rosult);
+                }
+            })
+        })
+        //ajax 获取凑单品的区域的信息
+        $(".top-navArea").click(function(){
+//            console.log($(this).index());
+            $.ajax({
+                url:"http://139.199.192.48:9090/api/getgsshoparea",
+                success:function(data){
+                    console.log(data)
+                    var rosult=template("two-template",data);
+                    $(".two-ul").html(rosult);
+                }
+            })
+        })
+
+
+
+        //导航栏的字体颜色改变
+        $(".pwc-nav").on("click","li>s",function(e){
+            $(e.target).css({
+                color:"red",
+//                fontWeight:"bold",
+            })
+            $(e.target).parent().siblings("li").children("s").css({
+                color:"grey",
+//                fontWeight:"bold",
+            })
+        })
+
+
+        //搜索区域 第一个ul li 里面的 a 标签事件
+        $(".Sorting-ul li>a").click(function(){
+            $(this).css({
+                backgroundColor:"red",
+                color:"white",
+            })
+            $(this).parent().siblings().children("a").css({
+                backgroundColor:"white",
+//                borderRadius:5+"px",
+                textDecoration:"none",
+                color:"grey",
+            })
+        })
+
+        //搜索区域 第二个ul li 里面的 a 标签事件
+        $(".cateGory li>a").click(function(){
+            $(this).css({
+                backgroundColor:"red",
+                color:"white"
+            })
+            $(this).parent().siblings().children("a").css({
+                backgroundColor:"white",
+//                borderRadius:5+"px",
+                color:"grey",
+                textDecoration:"none"
+            })
+        })
+    })
+</script>

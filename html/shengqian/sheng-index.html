@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="utf-8">
+  <!-- ie让页面 按照edge这个版本 来渲染 主要针对的是ie浏览器  -->
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <!-- 视口属性 -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+  <title>最新优惠-省钱控-慢慢买</title>
+<script>
+   document.querySelector('html').style.fontSize = window.screen.width / 10 + 'px';
+</script>
+  <!--页面图标-->
+  <link rel="shortcut icon" type="image/x-icon" href="../../favicon.ico" class="ico"/>
+  <!-- Bootstrap -->
+  <link href="../../css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="../../css/shengqian.css">
+
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!-- 条件注释 小于 ie9 -->
+  <!--html5shiv html5 新语义标签-->
+  <!-- respond 媒体查询 在 ie8及以下 是不支持的  -->
+  <!-- 如果想要下载到本地 可以去  github-->
+  <!--[if lt IE 9]>
+      <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body> 
+  <!--省钱控头部-->
+  <div class="sheng-qian">
+    <!--<div id="sheng-header" class="sheng-header">
+      <!--跳转首页-->
+      <!--<a href="index.html"><span class="glyphicon glyphicon-chevron-left s-left"></span></a>-->
+      <!--<span>省钱控-最优惠</span>-->
+      <!--跳转APP下载页面-->
+      <!--<a href="http://m.manmanbuy.com/?o=download" class="s-right"></a>-->
+
+     
+      <!--glyphicon glyphicon-save-file-->
+      <!--https://img.alicdn.com/imgextra/i2/379516416/
+      TB2WepTeb1J.eBjSszcXXbFzVXa_!!379516416.png-->
+    <!--</div>-->
+  <div class="top">
+    <div class="top_left">
+        <a href="http://m.manmanbuy.com/" class="glyphicon glyphicon-menu-left"></a>
+    </div>
+        <h2>省钱控最优惠</h2>
+        <div class="top_right">
+        <a href="#">
+            <img src="../../images/header_app.png" alt="">
+        </a>
+    </div>
+  </div>
+    <!--省钱控商品列表-->
+    <div class="sheng-container">
+      <ul>
+        <li>
+          <!--省钱控跳转详情页面-->
+           <!--<a href="">
+             <div class="sheng-container-l">
+                <img src="3.jpg" alt="">
+             </div>
+             <div class="sheng-container-r">   
+                <span>移动凑单品，酱油1.2L</span>
+                <span>价钱便宜的要死</span>
+                <p>
+                  <i>20117年</i>
+                  <i>好好奶奶</i>
+                </p>
+             </div>
+           </a>-->
+        </li>
+      </ul>
+      <div class="sheng-seek">
+        <button class="sheng-previous" type="">上一页</button>
+        <select style="width:auto;padding:2% 0%;margin:0" class="sheng-page" id="sheng-page" style="">
+           <!--<option value=""></option>-->
+        </select>
+        <button class="sheng-next" type="">下一页</button>
+      </div>
+        <!--跳转首页-->
+      <p class="sheng-change"><a href="">跳转首页</a>>省钱控</p>
+        <!--底部 -->
+      <div class="sy-foot">
+        <div class="dengLu">
+          <a href="javascript:void(0)">登录</a>
+          <a href="javascript:void(0)">注册</a>
+          <a class="shengback" href="javascript:void(0)"><i class="glyphicon glyphicon-arrow-up"></i>&nbsp;返回顶部</a>
+        </div>
+      <div class="xiaZ">
+          <P><a href="javascript:void(0)">手机APP下载</a>慢慢买手机版 <span>-- 掌上比价平台</span></P>
+          <P><a href="javascript:void(0)">m.manmanbuy.com</a></P>
+      </div>
+    </div>
+<!--底部-->
+  </div>
+</div>
+  <div class="sheng-fixed" style="position:fixed;right:0;bottom:30px;z-index:998">
+    <!--跳转APP下载页面-->
+  <a  href="http://m.manmanbuy.com/?o=download">
+    <img class="fixed-img" src="../../images/sheng-log.png" alt="" width="60">
+  </a>
+  </div>
+</body>
+
+</html>
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="../../js/jquery-1.12.4.min.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="../../js/bootstrap.min.js"></script>
+<!--导入模板js-->
+<script type="text/javascript" src="../../js/template-web.js"></script>
+
+<script type="text/html" id="sheng-lie">
+      {{each result}}
+      <li>
+          <!--省钱控跳转详情页面-->
+           <!--<a class="sheng-tiao" href="./shengqian.php?productId={{$value.productId}}">-->
+           <a class="sheng-tiao" href="./hw_info.php?productId={{$value.productId}}">
+             <div class="sheng-container-l">
+                {{#$value.productImg2}}
+             </div>
+             <div class="sheng-container-r">   
+                <span>{{$value.productName}}</span>
+                <span>{{$value.productPinkage}}</span>
+                <p class="">
+                  <i>{{$value.productFrom}}{{$value.productTime}}</i>
+                  <i class="glyphicon glyphicon-comment">&nbsp;0</i>
+                </p>
+             </div>
+           </a>
+        </li>
+      {{/each}}  
+</script>
+<script>
+    
+     $(function(){
+       var temp;
+       function page(pagenum){
+           $.ajax({
+            url:'http://139.199.192.48:9090/api/getmoneyctrl',
+            data:{
+            pageid:pagenum
+            },
+            success:function(data){
+            console.log(data);
+            var res=template('sheng-lie',data);
+            $('li').html(res);
+            console.log(pagenum);
+            }
+         })
+       }
+      var pagenum=1;
+      var totalPage;
+      var flag=true;
+       $.ajax({
+         url:'http://139.199.192.48:9090/api/getmoneyctrl',
+         data:{
+           pageid:1
+         },
+         success:function(data){
+           console.log(data);
+           var res=template('sheng-lie',data);
+           $('li').html(res);
+           var totalPage=Math.floor(data.totalCount/data.pagesize);
+           console.log(totalPage);
+          if(flag){
+            for(var i=1;i<=totalPage;i++){
+             $('select').append($('<option value='+i+'>'+i+'/'+totalPage+'</option>'));
+            }
+            flag=false; 
+          }else{
+              return;
+            } 
+         }
+       })
+       $('.sheng-next').click(function(){
+        pagenum++;
+        if(pagenum<=14){ 
+        page(pagenum);
+        $('select').val(pagenum);
+        }else{
+          $('select').val(14);
+        }
+       
+       })
+       $('.sheng-previous').click(function(){
+         pagenum--;
+        if(pagenum>=1){
+         page(pagenum);
+         $('select').val(pagenum);
+        }else{
+          $('select').val(1);
+        }
+        
+       })
+       $('#sheng-page').on('change',function(){
+         var result=$('#sheng-page').val();
+         pagenum=result;
+         page(pagenum);
+       })
+       $('.sheng-tiao').click(function(){
+         $.ajax({
+           url:'http://139.199.192.48:9090/api/getmoneyctrl?productId=21',
+           data:{
+              pageid:1
+           },
+           success:function(data){
+              console.log(data);
+              var temp=data.productId;
+              console.log(temp);
+           }
+         })
+       })
+       $('.shengback').click(function(){
+         $('html,body').animate({scrollTop:0});
+       })
+       
+       
+     })
+</script>
